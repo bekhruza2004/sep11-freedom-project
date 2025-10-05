@@ -25,7 +25,7 @@ class MyScene extends Phaser.Scene {
   }
 }
 ```
-This lets you control exactly what part of your game world is visible. The bounds keep the camera from going off-screen, and `centerOn` is handy for focusing on a specific area.
+This lets you control exactly what part of your game world is visible. The bounds keep the camera from going off-screen and `centerOn` is good for focusing on a specific area.
 
 ### Making the Camera Follow a Player
 * `camera.startFollow(target, ..., lerpX, lerpY)` - makes the camera follow something
