@@ -58,3 +58,44 @@ Here, the camera smoothly follows the player, but it won’t move unless the pla
 * Questions you still have
 * What you're going to try next
 -->
+
+### 10/20/25:
+
+# LL2
+#### [Source](https://docs.phaser.io/phaser/concepts/animations)
+
+## Animations
+
+### Creating and Playing Animations
+
+* `this.anims.create(config)` – makes a new animation and stores it by a key (name).
+* `sprite.play(key)` – plays an animation that you already created.
+* `anims.generateFrameNumbers(key, config)` – helps make animations from sprite sheets by picking frames in order.
+* `repeat` and `frameRate` – control how many times the animation loops and how fast it plays.
+
+Example:
+
+```language
+class MyScene extends Phaser.Scene {
+  preload() {
+    this.load.spritesheet('player', 'player.png', {
+      frameWidth: 32,
+      frameHeight: 48
+    });
+  }
+
+  create() {
+    // Create an animation called 'walk'
+    this.anims.create({
+      key: 'walk',
+      frames: this.anims.generateFrameNumbers('player', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1 // loops forever
+    });
+
+    // Add the sprite and play the animation
+    const player = this.add.sprite(100, 100, 'player');
+    player.play('walk');
+  }
+}
+```
