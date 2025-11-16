@@ -100,6 +100,46 @@ class MyScene extends Phaser.Scene {
 }
 ```
 
-### 10/5/25:
+### 11/16/25:
 
 # LL3
+
+## Audio
+
+### Loading, Creating, and Playing Audio
+
+* `this.sound.add(key, config)` - Creates a new sound instance in the scene. You use the key you loaded in `preload()`.
+* `sound.play()` - Plays the sound you added. You can also play audio directly with `this.sound.play(key, config)` without creating a variable.
+* `this.load.audio(key, urls)` - Loads audio files into the game. Phaser accepts multiple formats for browser compatibility.
+* `loop` and `volume` - Control whether the audio repeats and how loud it is.
+
+Example:
+
+```language
+class MyScene extends Phaser.Scene {
+  preload() {
+    // Load audio (mp3 + ogg for compatibility)
+    this.load.audio('bgMusic', ['bgMusic.mp3', 'bgMusic.ogg']);
+    this.load.audio('jump', ['jump.mp3', 'jump.ogg']);
+  }
+
+  create() {
+    // Create background music sound object
+    const music = this.sound.add('bgMusic', {
+      loop: true,    // play forever
+      volume: 0.5    // half volume
+    });
+
+    // Play background music
+    music.play();
+
+    // Create a sound effect
+    const jumpSound = this.sound.add('jump');
+
+    // Example usage: play the jump sound when SPACE is pressed
+    this.input.keyboard.on('keydown-SPACE', () => {
+      jumpSound.play();
+    });
+  }
+}
+```
