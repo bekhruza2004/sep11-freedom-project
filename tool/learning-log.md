@@ -143,3 +143,48 @@ class MyScene extends Phaser.Scene {
   }
 }
 ```
+
+### 11/23/25:
+
+# LL4
+
+## Actions
+
+* `Phaser.Actions.RotateLeft(items, value)` – Rotates all objects left by a certain amount.
+* `Phaser.Actions.RotateRight(items, value)` – Rotates all objects right.
+* `Phaser.Actions.IncXY(items, x, y)` – Changes (adds to) the X and Y positions of all items.
+* `Phaser.Actions.SetXY(items, x, y, stepX?, stepY?)` – Positions all objects starting from a point, optionally spacing them out.
+* `Phaser.Actions.ScaleXY(items, value)` – Scales all objects.
+* `Phaser.Actions.WrapInRectangle(items, rect)` – Keeps objects inside a rectangle by wrapping them.
+
+Example:
+
+```language
+class MyScene extends Phaser.Scene {
+  create() {
+    // Create a group of images
+    this.stars = this.add.group();
+
+    for (let i = 0; i < 20; i++) {
+      this.stars.add(
+        this.add.image(
+          Phaser.Math.Between(50, 750),
+          Phaser.Math.Between(50, 550),
+          'star'
+        )
+      );
+    }
+
+    // Rectangle boundary to keep objects inside
+    this.bounds = new Phaser.Geom.Rectangle(0, 0, 800, 600);
+  }
+
+  update() {
+    // Move all stars diagonally down-right
+    Phaser.Actions.IncXY(this.stars.getChildren(), 1, 1);
+
+    // Wrap them back into the screen when off bounds
+    Phaser.Actions.WrapInRectangle(this.stars.getChildren(), this.bounds);
+  }
+}
+```
