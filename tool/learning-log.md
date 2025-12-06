@@ -195,3 +195,32 @@ class MyScene extends Phaser.Scene {
 
 ## Display
 
+* `alpha` / `setAlpha(value)` - controls transparency (0 = invisible, 1 = fully visible).
+* `blendMode / setBlendMode(mode)` - controls how a game object’s colors blend with the background.
+* `setScale(x, y)` / `scaleX` / `scaleY` - changes the size of the object on the screen.
+* `rotation` / `setRotation(radians)` / `setAngle(degrees)` - rotates the object around its origin.
+* `setX(x) / setY(y) / setPosition(x, y)` - set the location of the object on screen.
+* `visible` / `setVisible(true/false)` - whether the object is drawn or hidden.
+* `displayWidth` and `displayHeight` - the actual displayed size, which depends on the object’s base size and its scale.
+
+Example:
+
+```language
+class MyDisplayScene extends Phaser.Scene {
+  create() {
+    // Add a sprite (or image) to the scene
+    const star = this.add.sprite(400, 300, 'star');
+
+    // Set appearance
+    star.setAlpha(0.7);                   // make it somewhat transparent
+    star.setScale(1.5);                   // scale it 1.5× original size
+    star.setBlendMode(Phaser.BlendModes.ADD);  // change how it blends with background
+    star.setVisible(true);                // make sure it's visible
+  }
+
+  update() {
+    // Animate: rotate slowly, maybe pulse scale or fade
+    star.rotation += 0.01;               // rotate a little every frame
+  }
+}
+```
