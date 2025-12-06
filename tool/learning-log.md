@@ -192,3 +192,6 @@ class MyScene extends Phaser.Scene {
 ### 12/7/25:
 
 # LL5
+
+## Display
+
