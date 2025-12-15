@@ -230,3 +230,50 @@ class MyDisplayScene extends Phaser.Scene {
 # LL6
 
 ## Arcade Physics
+
+* `this.physics.add.sprite(x, y, key)` - creates a sprite with an Arcade Physics body attached.
+* `body.velocity.x / body.velocity.y` - controls movement speed and direction on each axis.
+* `setVelocity(x, y)` - sets both x and y velocity at once.
+* `setVelocityX(value) / setVelocityY(value)` - sets velocity on one axis only.
+* `setAcceleration(x, y)` - gradually changes velocity over time (useful for smoother movement).
+* `setDrag(x, y)` - slows the body down over time (like friction).
+* `setBounce(x, y)` - controls how much the object bounces when it hits something (0 = no bounce, 1 = full bounce).
+* `setCollideWorldBounds(true)` - prevents the object from leaving the game world.
+* `body.allowGravity` - enables or disables gravity for this object.
+* `this.physics.add.collider(obj1, obj2)` - makes two objects physically collide and stop/bounce.
+* `this.physics.add.overlap(obj1, obj2, callback)` - detects overlap without physical collision (useful for pickups).
+* `body.immovable` - prevents an object from being pushed by others (common for platforms).
+
+Example:
+
+```language
+class MyPhysicsScene extends Phaser.Scene {
+  create() {
+    // Create a physics-enabled player sprite
+    this.player = this.physics.add.sprite(400, 300, 'player');
+
+    // Physics setup
+    this.player.setCollideWorldBounds(true); // keep player inside screen
+    this.player.setBounce(0.2);              // slight bounce on collision
+    this.player.setDrag(200, 0);             // slow down when not moving
+    this.player.body.allowGravity = true;    // affected by gravity
+
+    // Set an initial velocity
+    this.player.setVelocityX(150);
+
+    // Create a static platform
+    this.platform = this.physics.add.staticSprite(400, 550, 'platform');
+
+    // Enable collision between player and platform
+    this.physics.add.collider(this.player, this.platform);
+  }
+
+  update() {
+    // Simple movement example
+    if (this.player.body.blocked.down) {
+      // Jump only if touching the ground
+      this.player.setVelocityY(-350);
+    }
+  }
+}
+```
