@@ -224,3 +224,9 @@ class MyDisplayScene extends Phaser.Scene {
   }
 }
 ```
+
+### 12/14/25:
+
+# LL6
+
+## Arcade Physics
