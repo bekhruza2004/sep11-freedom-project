@@ -277,3 +277,70 @@ class MyPhysicsScene extends Phaser.Scene {
   }
 }
 ```
+
+### 1/15/26:
+
+# LL7
+
+## Game Objects
+
+Game Objects are anything you add to a scene that can be displayed, moved, and interacted with (sprites, images, text, shapes, etc.). All Game Objects share these common features.
+
+### Size & Bounds
+
+* `width / height` – base size of the texture or object.
+* `displayWidth / displayHeight` – actual size after scaling.
+* `getBounds()` – returns a rectangle representing the object’s bounds (useful for collisions or overlap checks).
+
+### Depth & Rendering Order
+
+* `depth / setDepth(value)` – controls which objects appear in front of others.
+* Higher depth = drawn on top.
+* `setAbove(other)` / `setBelow(other)` – move object relative to another.
+
+### Lifecycle
+
+* `active` – whether the object updates.
+* `visible` – whether the object is rendered.
+* `destroy()` – completely removes the object from the scene and memory.
+
+### Input (Interactivity)
+
+* `setInteractive()` – allows the object to receive input.
+* `on('pointerdown', callback)` – runs code when the object is clicked or tapped.
+* `disableInteractive()` – turns off input handling.
+
+Example:
+
+```language
+class MyGameObjectScene extends Phaser.Scene {
+  create() {
+    // Add a sprite to the scene
+    this.player = this.add.sprite(200, 300, 'player');
+
+    // Transform & positioning
+    this.player.setPosition(200, 300);
+    this.player.setOrigin(0.5, 0.5);
+    this.player.setFlipX(false);
+
+    // Depth (rendering order)
+    this.player.setDepth(5);
+
+    // Interactivity
+    this.player.setInteractive();
+    this.player.on('pointerdown', () => {
+      console.log('Player clicked!');
+    });
+  }
+
+  update() {
+    // Move the object every frame
+    this.player.x += 1;
+
+    // Simple flip based on direction
+    if (this.player.x > 400) {
+      this.player.setFlipX(true);
+    }
+  }
+}
+```
