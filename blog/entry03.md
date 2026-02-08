@@ -24,7 +24,18 @@ this.physics.add.collider(this.player, this.platform);
 ```
 This code helped me learn how to give sprites physics and make them collide with platforms.
 
+The next thing I plan to learn about Phaser is player inputs. I want to focus on using keyboard input to move the player and adding a simple start screen.
 
+## Sources
+* [Phaser Documentation](https://docs.phaser.io/)
+* Youtube videos
+* Existing phaser games
+
+## EDP
+Right now I am in the "Research the problem" stage of the engineering design process. I am still learning how Phaser works and figuring out what tools and features I need for my platformer game.
+
+## Skills
+One skill I have improved is problem decomposition. I break big tasks into smaller pieces. Instead of trying to make a whole game I focus on one part at a time like learning cameras then animations then physics. Another skill is debugging. Many times my code doesn’t work at first so I have to debug and tinker with small changes to my code. I have also practiced time management. I try to schedule time to work on my project and focus on building toward an MVP. This helps me make progress instead of waiting until the last minute.
 
 [Previous](entry02.md) | [Next](entry04.md)
 
