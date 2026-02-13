@@ -9,12 +9,17 @@
 
 #### MVP
 
-- [ ] Task (deadline: X)
+- [ ] Make the characters/players (deadline: X)
+- [ ] Make the map with the platforms
+- [ ] Make the player inputs/controls
   - [ ] Subtask (deadline: X)
 
 #### Beyond MVP
 
-- [ ] Task
+- [ ] Design characters and make animations for them
+- [ ] Make more maps and design all of them
+- [ ] Add SFX
+- [ ] Add main menu
   - [ ] Subtask
 
 
