@@ -1,7 +1,7 @@
 # Plan
 
-## Tool: 
-## Product: 
+## Tool: Phaser
+## Product: Bomb Tag Platformer
 
 ---
 
