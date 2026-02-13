@@ -9,10 +9,11 @@
 
 #### MVP
 
-- [ ] Make the characters/players (deadline: X)
-- [ ] Make the map with the platforms
-- [ ] Make the player inputs/controls
-  - [ ] Subtask (deadline: X)
+- [ ] Make the characters/players (deadline: 3/1)
+- [ ] Make the map with the platforms (deadline: 3/1)
+- [ ] Make the player inputs/controls (deadline: 3/15)
+- [ ] Make a bomb timer with its functions (deadline: 3/25)
+- [ ] Make a scoreboard (deadline: 3/25)
 
 #### Beyond MVP
 
@@ -20,7 +21,6 @@
 - [ ] Make more maps and design all of them
 - [ ] Add SFX
 - [ ] Add main menu
-  - [ ] Subtask
 
 
 <!-- EXAMPLE
