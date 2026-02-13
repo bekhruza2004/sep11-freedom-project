@@ -1,7 +1,7 @@
 # Plan
 
 ## Tool: Phaser
-## Product: Bomb Tag Platformer
+## Product: 2 Player Bomb Tag Platformer
 
 ---
 
