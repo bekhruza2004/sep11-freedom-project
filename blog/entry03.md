@@ -27,7 +27,7 @@ This code helped me learn how to give sprites physics and make them collide with
 The next thing I plan to learn about Phaser is player inputs. I want to focus on using keyboard input to move the player and adding a simple start screen.
 
 ## Sources
-For sources I used the [Phaser Documentation](https://docs.phaser.io/) especially the sections on cameras, animations, and arcade physics. I also used [Youtube videos](https://www.youtube.com/watch?v=iqMIGGy5YiE&list=PLmcXe0-sfoShHpVWLDW2gqsyH1UFRni_2) to see step-by-step tutorials from developers building platformer games with phaser. I also explored existing phaser games online to observe how their code worked.
+For sources I used the [Phaser Documentation](https://docs.phaser.io/) especially the sections on cameras, animations, and arcade physics. I also used [Youtube videos](https://www.youtube.com/watch?v=iqMIGGy5YiE&list=PLmcXe0-sfoShHpVWLDW2gqsyH1UFRni_2) to see step-by-step tutorials from developers building platformer games with phaser. I also explored existing phaser games online to see how the code worked.
 
 ## EDP
 Right now I am in the "Research the problem" stage of the engineering design process. I am still learning how Phaser works and figuring out what tools and features I need for my platformer game.
