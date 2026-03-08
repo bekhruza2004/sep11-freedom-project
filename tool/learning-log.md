@@ -344,3 +344,20 @@ class MyGameObjectScene extends Phaser.Scene {
   }
 }
 ```
+
+### 3/7/26:
+
+# LL8
+
+## Geometry
+
+* `Phaser.Geom.Point(x, y)` – represents a single point in 2D space.
+* `Phaser.Geom.Line(x1, y1, x2, y2)` – creates a line between two coordinates.
+* `Phaser.Geom.Rectangle(x, y, width, height)` – defines a rectangular area.
+* `Phaser.Geom.Circle(x, y, radius)` – defines a circular area.
+* `Phaser.Geom.Triangle(x1, y1, x2, y2, x3, y3)` – creates a triangle using three points.
+* `Phaser.Geom.Rectangle.Contains(rect, x, y)` – checks if a point is inside a rectangle.
+* `Phaser.Geom.Circle.Contains(circle, x, y)` – checks if a point is inside a circle.
+* `Phaser.Geom.Intersects.RectangleToRectangle(rect1, rect2)` – checks if two rectangles overlap.
+* `Phaser.Geom.Line.Length(line)` – returns the length of a line.
+* `Phaser.Math.Distance.Between(x1, y1, x2, y2)` – calculates distance between two points.
