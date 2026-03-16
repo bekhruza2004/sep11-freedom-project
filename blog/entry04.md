@@ -35,7 +35,7 @@ I am still in the Research the Problem stage of the Engineering Design Process, 
 
 ## Skills
 
-One skill I have continued improving is problem decomposition. Instead of trying to build the whole game at once, I focus on smaller systems like player movement or platforms. I have also continued working on time management by setting small goals for each work session, such as implementing keyboard movement or testing platform collisions.
+One skill I have continued improving is problem decomposition. Instead of trying to build the whole game at once, I focus on smaller systems like player movement or platforms. I have also continued working on time management by setting small goals for each time I work on my game such as implementing keyboard movement or testing platform collisions.
 
 [Previous](entry03.md) | [Next](entry05.md)
 
