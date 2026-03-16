@@ -5,9 +5,29 @@
 
 Since last time I have still been using [Phaser Documentation](https://docs.phaser.io/?_gl=1*1ozx1q*_ga*MTEyNjgyNzQ4OS4xNzcyOTM3MTgz*_ga_7NC8GZ639E*czE3NzM2NTUzNjMkbzIkZzAkdDE3NzM2NTUzNjMkajYwJGwwJGg5Njc2MzI2ODQ.) and I still rely on the example code, but now I spend more time modifying and adding the code to my own game. I also continue watching YouTube tutorials to see how developers structure their Phaser projects especially for platformer games. I have been learning player input and movement. I practiced using keyboard input so the player sprite can move left and right and jump. I tried to understand how the keyboard input connects to physics and sprite movement. I experimented with changing speed values and jump strength to see how it affected gameplay. This helped me understand how Phaser updates movement during the game loop. For progress towards my MVP I have 2 players that can move using the keyboard and interact with simple platforms using arcade physics. The player can move left and right and jump. This is an important step toward my MVP because movement and platform collisions are the main mechanics of a platformer game. Next I want to add audio and maybe a menu so you can choose different maps.
 
+Evidence: Here are some examples of the code I have worked with while learning phaser:
+
+```language
+this.cursors = this.input.keyboard.createCursorKeys();
+
+if (this.cursors.left.isDown) {
+  this.player.setVelocityX(-160);
+} else if (this.cursors.right.isDown) {
+  this.player.setVelocityX(160);
+} else {
+  this.player.setVelocityX(0);
+}
+
+if (this.cursors.up.isDown && this.player.body.touching.down) {
+  this.player.setVelocityY(-330);
+}
+```
+
+This code allowed me to control the player using the keyboard arrow keys. It also includes a condition that only lets the player jump when touching the ground.
+
 ## Sources
 
-I am using the [Phaser Documentation](https://docs.phaser.io/?_gl=1*1ozx1q*_ga*MTEyNjgyNzQ4OS4xNzcyOTM3MTgz*_ga_7NC8GZ639E*czE3NzM2NTUzNjMkbzIkZzAkdDE3NzM2NTUzNjMkajYwJGwwJGg5Njc2MzI2ODQ.) for player input. I also watched YouTube tutorials where developers build simple Phaser platformer games step by step. These resources helped me understand how to connect player input with physics movement.
+I am using the [Phaser Documentation](https://docs.phaser.io/?_gl=1*1ozx1q*_ga*MTEyNjgyNzQ4OS4xNzcyOTM3MTgz*_ga_7NC8GZ639E*czE3NzM2NTUzNjMkbzIkZzAkdDE3NzM2NTUzNjMkajYwJGwwJGg5Njc2MzI2ODQ.) for player input. I also watched [YouTube tutorials](https://www.youtube.com/watch?v=0qtg-9M3peI) where developers build simple Phaser platformer games step by step. These resources helped me understand how to connect player input with physics movement.
 
 ## EDP
 
