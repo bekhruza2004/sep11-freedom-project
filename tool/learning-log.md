@@ -366,7 +366,7 @@ class MyGameObjectScene extends Phaser.Scene {
 
 # LL9
 
-Input (Keyboard & Mouse)
+## Input (Keyboard & Mouse)
 
 * `this.input.keyboard.addKey(key)` – listens for a specific key (e.g., W, A, S, D).
 * `this.input.keyboard.createCursorKeys()` – creates arrow key controls (up, down, left, right).
