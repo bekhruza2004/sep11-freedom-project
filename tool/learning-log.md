@@ -361,3 +361,23 @@ class MyGameObjectScene extends Phaser.Scene {
 * `Phaser.Geom.Intersects.RectangleToRectangle(rect1, rect2)` – checks if two rectangles overlap.
 * `Phaser.Geom.Line.Length(line)` – returns the length of a line.
 * `Phaser.Math.Distance.Between(x1, y1, x2, y2)` – calculates distance between two points.
+
+### 3/22/26
+
+# LL9
+
+Input (Keyboard & Mouse)
+
+* `this.input.keyboard.addKey(key)` – listens for a specific key (e.g., W, A, S, D).
+* `this.input.keyboard.createCursorKeys()` – creates arrow key controls (up, down, left, right).
+* `Phaser.Input.Keyboard.JustDown(key)` – checks if a key was just pressed once.
+* `key.isDown` – checks if a key is currently being held down.
+* `key.isUp` – checks if a key is not pressed.
+* `this.input.on('pointerdown', callback)` – runs code when the mouse is clicked.
+* `this.input.on('pointerup', callback)` – runs when the mouse button is released.
+* `this.input.on('pointermove', callback)` – tracks mouse movement.
+* `pointer.x / pointer.y` – gets the mouse position on the screen.
+* `gameObject.setInteractive()` – allows an object (sprite, image, etc.) to detect input.
+* `gameObject.on('pointerdown', callback)` – detects clicks on a specific object.
+* `this.input.mousePointer` – gives access to the active mouse pointer.
+* `pointer.isDown` – checks if the mouse button is being held.
