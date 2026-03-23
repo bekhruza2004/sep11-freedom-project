@@ -368,7 +368,7 @@ class MyGameObjectScene extends Phaser.Scene {
 
 ## Input (Keyboard & Mouse)
 
-* `this.input.keyboard.addKey(key)` – listens for a specific key (e.g., W, A, S, D).
+* `this.input.keyboard.addKey(key)` – listens for a specific key (W, A, S, D).
 * `this.input.keyboard.createCursorKeys()` – creates arrow key controls (up, down, left, right).
 * `Phaser.Input.Keyboard.JustDown(key)` – checks if a key was just pressed once.
 * `key.isDown` – checks if a key is currently being held down.
