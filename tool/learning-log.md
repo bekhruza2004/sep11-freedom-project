@@ -381,3 +381,30 @@ class MyGameObjectScene extends Phaser.Scene {
 * `gameObject.on('pointerdown', callback)` – detects clicks on a specific object.
 * `this.input.mousePointer` – gives access to the active mouse pointer.
 * `pointer.isDown` – checks if the mouse button is being held.
+
+### 3/29/26
+
+# LL10
+
+## Projectiles
+
+# LL10
+
+## Throwing / Shooting Objects (Projectiles)
+
+* `this.physics.add.sprite(x, y, key)` – creates a projectile (like a bullet or thrown object).
+* `projectile.setVelocity(x, y)` – launches the object in a direction.
+* `this.physics.velocityFromRotation(angle, speed, projectile.body.velocity)` – shoots based on rotation (useful for aiming).
+* `Phaser.Math.Angle.Between(x1, y1, x2, y2)` – finds the angle between player and target (like mouse).
+* `this.physics.moveToObject(projectile, target, speed)` – makes a projectile move toward an object.
+* `this.input.activePointer` – gets the mouse pointer for aiming.
+* `pointer.worldX / pointer.worldY` – gets mouse position in the game world.
+* `projectile.setCollideWorldBounds(true)` – keeps projectiles inside the screen.
+* `projectile.setBounce(value)` – makes projectiles bounce.
+* `this.physics.add.collider(projectile, target, callback)` – detects collision with enemies or objects.
+* `this.physics.add.overlap(projectile, target, callback)` – detects hits without physical bounce.
+* `projectile.destroy()` – removes the projectile after hitting something or going off-screen.
+* `this.time.addEvent({...})` – can control fire rate (cooldowns between shots).
+* `group.create(x, y, key)` – use groups to manage multiple bullets efficiently.
+* `group.getFirstDead(false)` – reuses old projectiles (optimization).
+* `projectile.setActive(true).setVisible(true)` – reactivates reused bullets.
