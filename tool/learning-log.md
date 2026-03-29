@@ -388,10 +388,6 @@ class MyGameObjectScene extends Phaser.Scene {
 
 ## Projectiles
 
-# LL10
-
-## Throwing / Shooting Objects (Projectiles)
-
 * `this.physics.add.sprite(x, y, key)` – creates a projectile (like a bullet or thrown object).
 * `projectile.setVelocity(x, y)` – launches the object in a direction.
 * `this.physics.velocityFromRotation(angle, speed, projectile.body.velocity)` – shoots based on rotation (useful for aiming).
