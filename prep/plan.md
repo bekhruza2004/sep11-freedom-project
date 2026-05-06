@@ -17,6 +17,7 @@
 
 #### Beyond MVP
 
+- [ ] fix bomb not exploding anyone if thrown last second
 - [ ] Design characters and make animations for them
 - [ ] Make more maps and design all of them
 - [ ] Add SFX
