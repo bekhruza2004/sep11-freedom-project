@@ -1,29 +1,399 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bomb Tag</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container"></div>
+    <script>
+        class GameScene extends Phaser.Scene {
+            constructor() {
+                super('GameScene');
+                this.player1Score = 0;
+                this.player2Score = 0;
+                this.bombTimer = 30;
+                this.bombHolder = null;
+                this.gameStarted = false;
+                this.bombThrown = false;
+                this.player1Jumps = 0;
+                this.player2Jumps = 0;
+                this.player1WasGrounded = false;
+                this.player2WasGrounded = false;
+            }
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="style.css" rel="stylesheet" type="text/css" />
-        <style>
-            /* CSS */
-            
-        </style>
-        
-        <title>Title</title>
-    </head>
-    <body>
-        <!-- HTML -->
-        
-        
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- <script src="script.js"></script> -->
-        <script>
-            // JS
-            
-            
-        </script>
-    </body>
+            create() {
+                this.physics.world.setBounds(0, 0, 1200, 800);
+
+                // Create platforms
+                this.platforms = this.physics.add.staticGroup();
+
+                // Ground
+                const ground = this.add.rectangle(600, 780, 1200, 40, 0x4a4a4a);
+                this.physics.add.existing(ground, true);
+                this.platforms.add(ground);
+
+                // Lower platforms
+                const plat1 = this.add.rectangle(200, 650, 250, 20, 0x4a4a4a);
+                this.physics.add.existing(plat1, true);
+                this.platforms.add(plat1);
+
+                const plat2 = this.add.rectangle(1000, 650, 250, 20, 0x4a4a4a);
+                this.physics.add.existing(plat2, true);
+                this.platforms.add(plat2);
+
+                // Mid-lower platforms
+                const plat3 = this.add.rectangle(450, 520, 180, 20, 0x4a4a4a);
+                this.physics.add.existing(plat3, true);
+                this.platforms.add(plat3);
+
+                const plat4 = this.add.rectangle(750, 520, 180, 20, 0x4a4a4a);
+                this.physics.add.existing(plat4, true);
+                this.platforms.add(plat4);
+
+                // Middle platforms
+                const plat5 = this.add.rectangle(600, 400, 200, 20, 0x4a4a4a);
+                this.physics.add.existing(plat5, true);
+                this.platforms.add(plat5);
+
+                const plat6 = this.add.rectangle(150, 380, 150, 20, 0x4a4a4a);
+                this.physics.add.existing(plat6, true);
+                this.platforms.add(plat6);
+
+                const plat7 = this.add.rectangle(1050, 380, 150, 20, 0x4a4a4a);
+                this.physics.add.existing(plat7, true);
+                this.platforms.add(plat7);
+
+                // Upper platforms
+                const plat8 = this.add.rectangle(350, 260, 160, 20, 0x4a4a4a);
+                this.physics.add.existing(plat8, true);
+                this.platforms.add(plat8);
+
+                const plat9 = this.add.rectangle(850, 260, 160, 20, 0x4a4a4a);
+                this.physics.add.existing(plat9, true);
+                this.platforms.add(plat9);
+
+                // Top platform
+                const plat10 = this.add.rectangle(600, 150, 180, 20, 0x4a4a4a);
+                this.physics.add.existing(plat10, true);
+                this.platforms.add(plat10);
+
+                // Player 1 Blue - left side
+                this.player1 = this.physics.add.sprite(200, 700, null);
+                const p1Graphics = this.add.graphics();
+                p1Graphics.fillStyle(0x3498db, 1);
+                p1Graphics.fillRect(-15, -20, 30, 40);
+                p1Graphics.generateTexture('player1', 30, 40);
+                p1Graphics.destroy();
+                this.player1.setTexture('player1');
+                this.player1.setBounce(0.1);
+                this.player1.setCollideWorldBounds(true);
+                this.player1.body.setSize(30, 40);
+
+                // Player 2 Red - right side
+                this.player2 = this.physics.add.sprite(1000, 700, null);
+                const p2Graphics = this.add.graphics();
+                p2Graphics.fillStyle(0xe74c3c, 1);
+                p2Graphics.fillRect(-15, -20, 30, 40);
+                p2Graphics.generateTexture('player2', 30, 40);
+                p2Graphics.destroy();
+                this.player2.setTexture('player2');
+                this.player2.setBounce(0.1);
+                this.player2.setCollideWorldBounds(true);
+                this.player2.body.setSize(30, 40);
+
+                // bomb
+                const bombGraphics = this.add.graphics();
+                bombGraphics.fillStyle(0x2c3e50, 1);
+                bombGraphics.fillCircle(15, 15, 15);
+                bombGraphics.fillStyle(0xf39c12, 1);
+                bombGraphics.fillCircle(15, 5, 5);
+                bombGraphics.generateTexture('bomb', 30, 30);
+                bombGraphics.destroy();
+
+                this.bomb = this.physics.add.sprite(200, 650, 'bomb');
+                this.bomb.setBounce(0.3);
+                this.bomb.setCollideWorldBounds(true);
+                this.bomb.body.setSize(25, 25);
+
+                // collisions
+                this.physics.add.collider(this.player1, this.platforms);
+                this.physics.add.collider(this.player2, this.platforms);
+                this.physics.add.collider(this.bomb, this.platforms);
+
+                // player collision for bomb passing
+                this.physics.add.overlap(this.player1, this.player2, this.handlePlayerCollision, null, this);
+
+                // overlap detection for bomb pickup (only when not thrown)
+                this.physics.add.overlap(this.player1, this.bomb, this.handleBombContact, null, this);
+                this.physics.add.overlap(this.player2, this.bomb, this.handleBombContact, null, this);
+
+                // Controls
+                this.cursors = this.input.keyboard.createCursorKeys();
+                this.wasd = this.input.keyboard.addKeys({
+                    up: Phaser.Input.Keyboard.KeyCodes.W,
+                    left: Phaser.Input.Keyboard.KeyCodes.A,
+                    right: Phaser.Input.Keyboard.KeyCodes.D,
+                    throw: Phaser.Input.Keyboard.KeyCodes.S
+                });
+                this.arrowThrow = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+
+                // UI Text
+                this.timerText = this.add.text(600, 30, 'BOMB: 30s', {
+                    fontSize: '32px',
+                    fill: '#fff',
+                    fontStyle: 'bold',
+                    stroke: '#000',
+                    strokeThickness: 4
+                }).setOrigin(0.5).setScrollFactor(0);
+
+                this.scoreText = this.add.text(600, 70, 'P1: 0  |  P2: 0', {
+                    fontSize: '24px',
+                    fill: '#fff',
+                    stroke: '#000',
+                    strokeThickness: 3
+                }).setOrigin(0.5).setScrollFactor(0);
+
+                this.bombHolder = Math.random() < 0.5 ? this.player1 : this.player2;
+                this.gameStarted = true;
+                this.lastTimerUpdate = 0;
+            }
+
+            update(time, delta) {
+                if (!this.gameStarted) return;
+
+                if (this.bombHolder) {
+                    this.bomb.x = this.bombHolder.x;
+                    this.bomb.y = this.bombHolder.y - 30;
+                    this.bomb.setVelocity(0, 0);
+                    this.bomb.body.enable = false;
+                }
+
+                const p1Grounded = this.player1.body.touching.down || this.player1.body.blocked.down;
+                const p2Grounded = this.player2.body.touching.down || this.player2.body.blocked.down;
+
+                if (p1Grounded && !this.player1WasGrounded) {
+                    this.player1Jumps = 0;
+                }
+                if (p2Grounded && !this.player2WasGrounded) {
+                    this.player2Jumps = 0;
+                }
+
+                this.player1WasGrounded = p1Grounded;
+                this.player2WasGrounded = p2Grounded;
+
+                // Player 1 controls (WASD)
+                if (this.wasd.left.isDown) {
+                    this.player1.setVelocityX(-200);
+                } else if (this.wasd.right.isDown) {
+                    this.player1.setVelocityX(200);
+                } else {
+                    this.player1.setVelocityX(0);
+                }
+
+                if (Phaser.Input.Keyboard.JustDown(this.wasd.up) && this.player1Jumps < 2) {
+                    this.player1.setVelocityY(-400);
+                    this.player1Jumps++;
+                }
+
+                if (Phaser.Input.Keyboard.JustDown(this.wasd.throw) && this.bombHolder === this.player1) {
+                    this.throwBomb(this.player1);
+                }
+
+                // Player 2 controls (Arrow keys)
+                if (this.cursors.left.isDown) {
+                    this.player2.setVelocityX(-200);
+                } else if (this.cursors.right.isDown) {
+                    this.player2.setVelocityX(200);
+                } else {
+                    this.player2.setVelocityX(0);
+                }
+
+                if (Phaser.Input.Keyboard.JustDown(this.cursors.up) && this.player2Jumps < 2) {
+                    this.player2.setVelocityY(-400);
+                    this.player2Jumps++;
+                }
+
+                if (Phaser.Input.Keyboard.JustDown(this.arrowThrow) && this.bombHolder === this.player2) {
+                    this.throwBomb(this.player2);
+                }
+
+                // Update timer
+                this.lastTimerUpdate += delta;
+                if (this.lastTimerUpdate >= 1000) {
+                    this.lastTimerUpdate = 0;
+                    this.bombTimer--;
+
+                    let color = '#fff';
+                    if (this.bombTimer <= 5) {
+                        color = '#ff0000';
+                    } else if (this.bombTimer <= 10) {
+                        color = '#ff9900';
+                    }
+
+                    this.timerText.setText('BOMB: ' + this.bombTimer + 's');
+                    this.timerText.setColor(color);
+
+                    if (this.bombTimer <= 0) {
+                        this.explodeBomb();
+                    }
+                }
+            }
+
+            handlePlayerCollision(player1, player2) {
+                if (this.bombHolder === player1 && !this.bombThrown) {
+                    this.bombHolder = player2;
+                    this.bombTimer = 30;
+                    this.tweens.add({ targets: this.bomb, scaleX: 1.3, scaleY: 1.3, duration: 100, yoyo: true });
+                    this.cameras.main.shake(100, 0.003);
+                } else if (this.bombHolder === player2 && !this.bombThrown) {
+                    this.bombHolder = player1;
+                    this.bombTimer = 30;
+                    this.tweens.add({ targets: this.bomb, scaleX: 1.3, scaleY: 1.3, duration: 100, yoyo: true });
+                    this.cameras.main.shake(100, 0.003);
+                }
+            }
+
+            handleBombContact(player, bomb) {
+                if (!this.bombHolder && !this.bombThrown) {
+                    this.bombHolder = player;
+                    this.bombTimer = 30;
+                    this.tweens.add({ targets: bomb, scaleX: 1.3, scaleY: 1.3, duration: 100, yoyo: true });
+                }
+            }
+
+            throwBomb(player) {
+                this.bombHolder = null;
+                this.bombThrown = true;
+                this.bomb.body.enable = true;
+                const thrower = player;
+
+                let throwX = 0;
+                if (player === this.player1) {
+                    throwX = this.wasd.right.isDown ? 350 : (this.wasd.left.isDown ? -350 : 350);
+                } else {
+                    throwX = this.cursors.right.isDown ? 350 : (this.cursors.left.isDown ? -350 : -350);
+                }
+
+                this.bomb.setVelocity(throwX, -250);
+                this.cameras.main.shake(100, 0.005);
+
+                this.time.delayedCall(500, () => {
+                    this.bombThrown = false;
+                    this.time.delayedCall(1500, () => {
+                        if (!this.bombHolder && this.gameStarted) {
+                            this.bombHolder = player;
+                            this.tweens.add({ targets: this.bomb, scaleX: 1.3, scaleY: 1.3, duration: 100, yoyo: true });
+                        }
+                    });
+                });
+            }
+
+            explodeBomb() {
+                this.gameStarted = false;
+
+                const explosion = this.add.circle(this.bomb.x, this.bomb.y, 10, 0xff6600, 1);
+                this.tweens.add({
+                    targets: explosion,
+                    radius: 100,
+                    alpha: 0,
+                    duration: 500,
+                    onComplete: () => explosion.destroy()
+                });
+
+                this.cameras.main.shake(300, 0.02);
+
+                if (this.bombHolder === this.player1) {
+                    this.player2Score++;
+                } else if (this.bombHolder === this.player2) {
+                    this.player1Score++;
+                }
+
+                this.scoreText.setText(`P1: ${this.player1Score}  |  P2: ${this.player2Score}`);
+
+                if (this.player1Score >= 5) {
+                    this.showGameWinner('PLAYER 1 WINS THE GAME!');
+                } else if (this.player2Score >= 5) {
+                    this.showGameWinner('PLAYER 2 WINS THE GAME!');
+                } else {
+                    this.time.delayedCall(2000, () => this.resetRound());
+                }
+            }
+
+            showGameWinner(text) {
+                const winText = this.add.text(600, 400, text, {
+                    fontSize: '56px',
+                    fill: '#00ff00',
+                    fontStyle: 'bold',
+                    stroke: '#000',
+                    strokeThickness: 8
+                }).setOrigin(0.5).setScrollFactor(0);
+
+                this.add.text(600, 480, 'Refresh to play again', {
+                    fontSize: '24px',
+                    fill: '#ffffff',
+                    stroke: '#000',
+                    strokeThickness: 4
+                }).setOrigin(0.5).setScrollFactor(0);
+
+                this.tweens.add({
+                    targets: winText,
+                    scale: { from: 0, to: 1.3 },
+                    duration: 600,
+                    ease: 'Back.easeOut'
+                });
+            }
+
+            resetRound() {
+                this.player1.setPosition(200, 700);
+                this.player1.setVelocity(0, 0);
+                this.player2.setPosition(1000, 700);
+                this.player2.setVelocity(0, 0);
+
+                this.player1Jumps = 0;
+                this.player2Jumps = 0;
+                this.player1WasGrounded = false;
+                this.player2WasGrounded = false;
+
+                const starter = Math.random() < 0.5 ? this.player1 : this.player2;
+                this.bomb.setPosition(starter.x, starter.y - 30);
+                this.bomb.setVelocity(0, 0);
+                this.bomb.setScale(1);
+                this.bombHolder = starter;
+                this.bombThrown = false;
+
+                this.bombTimer = 30;
+                this.timerText.setColor('#fff');
+                this.lastTimerUpdate = 0;
+
+                this.gameStarted = true;
+            }
+        }
+
+        const config = {
+            type: Phaser.AUTO,
+            width: 1200,
+            height: 800,
+            parent: 'game-container',
+            backgroundColor: '#BABABA',
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 800 },
+                    debug: false
+                }
+            },
+            scene: GameScene
+        };
+
+        const game = new Phaser.Game(config);
+    </script>
+</body>
 </html>
