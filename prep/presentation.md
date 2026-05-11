@@ -4,13 +4,18 @@
 * 
 
 ## Product
-* 
+* explain what the game is
+* show visuals
+* explain important features
 
 ## Process
-* 
+* explain how I learned
+* explain how I made the main important parts of my project
+* challenges I had
 
 ## Conclusion
-* 
+* summarize what I made
+* takeaways
 
 <!-- EXAMPLE
 
