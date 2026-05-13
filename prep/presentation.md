@@ -1,7 +1,8 @@
 # Presentation Plan
 
 ## Hook
-* 
+* image of definition of ankle breaker
+* This term is used for the best jukers. Players who fake, dodge, and outplay their opponent so badly that it causes the opponent to lose control. My project is built around that idea.
 
 ## Product
 * explain what the game is
