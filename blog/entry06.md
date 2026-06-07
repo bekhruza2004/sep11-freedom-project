@@ -10,7 +10,7 @@ One takeaway from giving my in-class presentation was that I need to show my lea
 One takeaway from my Expo elevator pitch is that I learned how to explain quickly and clearly. I had 60 seconds and I had to focus on the important parts of my game. I presented to the judges and students who visited my project and it helped me practice presenting to different people rather than my classmates.
 
 ## Sources
-* [Presentation Plan](prep/presentation.md)
+* [Presentation Plan](https://github.com/bekhruza2004/sep11-freedom-project/blob/main/prep/presentation.md)
 * [Presentation Slides](https://docs.google.com/presentation/d/1b3w_8EonAWLtsEHyP6EmacK6lHZuopQHkQ7yjKQ4oL0/edit?slide=id.g3e1046bf85e_0_0#slide=id.g3e1046bf85e_0_0)
 
 ## EDP
