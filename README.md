@@ -6,6 +6,9 @@ I am a student at [HSTAT](https://www.hstat.org/) in the [Software Engineering P
 
 For my project, I chose to independently study **Phaser** in order to help me make **Bomb Tag**.
 
+## Content
+The blogs record my learning process throughout the Freedom Project. It shows how I learned Phaser using documentation, YouTube tutorials, and tinkering. The blog includes my progress from learning Phaser concepts to building and testing my MVP and challenges I faced. It also shows the skills I developed throughout the project. Finally, it shows my reflection on presenting my project in-class and the Expo.
+
 ## Links
 
 [Product](https://bekhruza2004.github.io/bombtag/)
@@ -14,9 +17,11 @@ For my project, I chose to independently study **Phaser** in order to help me ma
 
 ## Implications
 ##### PROS
-* 
+* Helps players improve reaction time and hand-eye coordination.
+* Provides entertainment.
+* Encourages competition.
 ##### CONS
-* 
+* Some players may find the game repetitive after playing for a long time.
 
 
 ## Blog
@@ -28,7 +33,3 @@ Below you will find my blog about how I made my project.
 * [Entry 4](blog/entry04.md)
 * [Entry 5](blog/entry05.md)
 * [Entry 6](blog/entry06.md)
-* [Entry 7](blog/entry07.md)
-* [Entry 8](blog/entry08.md)
-* [Entry 9](blog/entry09.md)
-* [Entry 10](blog/entry10.md)
