@@ -1,16 +1,16 @@
 # SEP11 Freedom Project
-by **X**
+by **Bekhruz Azamjonov**
 
 ## Context
 I am a student at [HSTAT](https://www.hstat.org/) in the [Software Engineering Program](https://hstatsep.github.io/). The "Freedom Project" for SEP11 is a year-long project all about making something using JavaScript along with a third-party JS tool.
 
-For my project, I chose to independently study **X** in order to help me make **X**.
+For my project, I chose to independently study **Phaser** in order to help me make **Bomb Tag**.
 
 ## Links
 
-[Product]()
+[Product](https://bekhruza2004.github.io/bombtag/)
 
-[Presentation]()
+[Presentation](https://docs.google.com/presentation/d/1b3w_8EonAWLtsEHyP6EmacK6lHZuopQHkQ7yjKQ4oL0/edit?slide=id.g3e1046bf85e_0_0#slide=id.g3e1046bf85e_0_0)
 
 ## Implications
 ##### PROS
